@@ -2,32 +2,31 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Dashboard from './components/Dashboard'
+import PomodoroPage from './pages/PomodoroPage'
+import RegistrationForm from './components/RegistrationForm'
+import TodoList from './components/TodoList'
+import { Route, Routes, Navigate, Link, Router} from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Router>
+      <nav>
+        <ul>
+          <li><Link to="/">To-Do List</Link></li>
+          <li><Link to="/pomodoro">Pomodoro Timer</Link></li>
+          <li><Link to="/register">Register</Link></li>
+        </ul>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<TodoList />} />
+        <Route path="/pomodoro" element={<PomodoroTimer />} />
+        <Route path="/register" element={<RegistrationForm />} />
+      </Routes>
+    </Router>
     </>
   )
 }
